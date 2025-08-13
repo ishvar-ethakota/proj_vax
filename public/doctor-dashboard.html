@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaxTracker - Doctor Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/doctor.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-brand">
+                <img src="/placeholder.svg?height=40&width=40" alt="VaxTracker Logo" class="logo">
+                <span class="brand-name">VaxTracker</span>
+                <span class="role-badge">Doctor</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#patients" class="nav-link active" data-translate="patients">Patients</a>
+                <a href="#pending" class="nav-link" data-translate="pending_vaccines">Pending</a>
+                <a href="#overdue" class="nav-link" data-translate="overdue_vaccines">Overdue</a>
+                <a href="#records" class="nav-link" data-translate="records">Records</a>
+                <div class="language-selector">
+                    <select id="languageSelect" class="language-dropdown">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="te">తెలుగు</option>
+                    </select>
+                </div>
+                <div class="doctor-profile">
+                    <span id="doctorName">Dr. Smith</span>
+                    <button class="btn btn-outline" id="logoutBtn" data-translate="logout">Logout</button>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Header -->
+        <section class="dashboard-header">
+            <div class="container">
+                <h1 class="dashboard-title" data-translate="doctor_dashboard">Doctor Dashboard</h1>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalPatients">0</div>
+                        <div class="stat-label" data-translate="total_patients">Total Patients</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendingVaccinations">0</div>
+                        <div class="stat-label" data-translate="pending_vaccines">Pending Vaccines</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="overdueVaccinations">0</div>
+                        <div class="stat-label" data-translate="overdue_vaccines">Overdue Vaccines</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completedToday">0</div>
+                        <div class="stat-label" data-translate="completed_today">Completed Today</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patients Section -->
+        <section class="patients-section" id="patientsSection">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-translate="my_patients">My Patients</h2>
+                    <button class="btn btn-primary" id="assignPatientBtn" data-translate="assign_patient">Assign Patient</button>
+                </div>
+                <div class="patients-grid" id="patientsGrid">
+                    <!-- Patients will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Pending Vaccinations Section -->
+        <section class="pending-section" id="pendingSection" style="display: none;">
+            <div class="container">
+                <h2 class="section-title" data-translate="pending_vaccinations">Pending Vaccinations</h2>
+                <div class="vaccination-list" id="pendingList">
+                    <!-- Pending vaccinations will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Overdue Vaccinations Section -->
+        <section class="overdue-section" id="overdueSection" style="display: none;">
+            <div class="container">
+                <h2 class="section-title" data-translate="overdue_vaccinations">Overdue Vaccinations</h2>
+                <div class="vaccination-list" id="overdueList">
+                    <!-- Overdue vaccinations will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Records Section -->
+        <section class="records-section" id="recordsSection" style="display: none;">
+            <div class="container">
+                <h2 class="section-title" data-translate="vaccination_records">Vaccination Records</h2>
+                <div class="records-list" id="recordsList">
+                    <!-- Records will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Complete Vaccination Modal -->
+    <div class="modal" id="completeVaccinationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-translate="complete_vaccination">Complete Vaccination</h3>
+                <button class="modal-close" id="closeCompleteModal">&times;</button>
+            </div>
+            <form class="vaccination-form" id="vaccinationForm">
+                <input type="hidden" id="scheduleId" name="scheduleId">
+                <div class="form-group">
+                    <label for="vaccinationDate" data-translate="vaccination_date">Vaccination Date</label>
+                    <input type="date" id="vaccinationDate" name="vaccinationDate" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="batchNumber" data-translate="batch_number">Batch Number</label>
+                    <input type="text" id="batchNumber" name="batchNumber" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="notes" data-translate="notes">Notes</label>
+                    <textarea id="notes" name="notes" rows="4" class="form-input" placeholder="Any observations or side effects..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" data-translate="complete_vaccination">Complete Vaccination</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Patient Schedule Modal -->
+    <div class="modal" id="patientScheduleModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="patientScheduleTitle">Patient Schedule</h3>
+                <button class="modal-close" id="closeScheduleModal">&times;</button>
+            </div>
+            <div class="schedule-content" id="scheduleContent">
+                <!-- Schedule will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/doctor-dashboard.js"></script>
+</body>
+</html>

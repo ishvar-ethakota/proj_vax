@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaxTracker - Stay Ahead of Your Child's Health</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-brand">
+                <img src="/placeholder.svg?height=40&width=40" alt="VaxTracker Logo" class="logo">
+                <span class="brand-name">VaxTracker</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link" data-translate="dashboard">Dashboard</a>
+                <a href="#children" class="nav-link" data-translate="children">Children</a>
+                <a href="#schedule" class="nav-link" data-translate="schedule">Schedule</a>
+                <div class="language-selector">
+                    <select id="languageSelect" class="language-dropdown">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="te">తెలుగు</option>
+                    </select>
+                </div>
+                <button class="btn btn-outline" id="loginBtn" data-translate="login">Login</button>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-translate="hero_title">Stay Ahead of Your Child's Health</h1>
+                    <p class="hero-subtitle" data-translate="hero_subtitle">Manage Vaccination Schedules with Ease</p>
+                    <p class="hero-description" data-translate="hero_description">Never miss an important vaccination. Track your child's health journey effortlessly with automated reminders and comprehensive vaccine information.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large" id="getStartedBtn" data-translate="get_started">Get Started Today</button>
+                        <button class="btn btn-secondary btn-large" id="learnMoreBtn" data-translate="learn_more">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/placeholder.svg?height=400&width=500" alt="Family Healthcare" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title" data-translate="features_title">Comprehensive Vaccine Management</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Child Profile">
+                        </div>
+                        <h3 class="feature-title" data-translate="child_profile">Child Profile</h3>
+                        <p class="feature-description" data-translate="child_profile_desc">Complete profiles with photos, medical details, and personalized vaccine schedules.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Dynamic Schedule">
+                        </div>
+                        <h3 class="feature-title" data-translate="dynamic_schedule">Dynamic Schedule</h3>
+                        <p class="feature-description" data-translate="dynamic_schedule_desc">Auto-calculated vaccination timeline based on your child's date of birth.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="/placeholder.svg?height=60&width=60" alt="SMS Reminders">
+                        </div>
+                        <h3 class="feature-title" data-translate="sms_reminders">SMS Reminders</h3>
+                        <p class="feature-description" data-translate="sms_reminders_desc">Automated text notifications before each vaccination due date.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Vaccine Info">
+                        </div>
+                        <h3 class="feature-title" data-translate="vaccine_info">Vaccine Information</h3>
+                        <p class="feature-description" data-translate="vaccine_info_desc">Detailed information about each vaccine's importance and possible side effects.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Doctor Access">
+                        </div>
+                        <h3 class="feature-title" data-translate="doctor_access">Doctor Access</h3>
+                        <p class="feature-description" data-translate="doctor_access_desc">Healthcare providers can update vaccination status and add notes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Data Privacy">
+                        </div>
+                        <h3 class="feature-title" data-translate="data_privacy">Data Privacy</h3>
+                        <p class="feature-description" data-translate="data_privacy_desc">Secure login system with encrypted data storage for complete privacy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Preview (Hidden by default, shown after login) -->
+        <section class="dashboard-section" id="dashboardSection" style="display: none;">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2 class="dashboard-title" data-translate="welcome_back">Welcome Back!</h2>
+                    <button class="btn btn-primary" id="addChildBtn" data-translate="add_child">Add Child</button>
+                </div>
+                
+                <!-- Children Cards -->
+                <div class="children-grid" id="childrenGrid">
+                    <!-- Children cards will be populated by JavaScript -->
+                </div>
+
+                <!-- Upcoming Vaccines -->
+                <div class="upcoming-vaccines">
+                    <h3 class="section-subtitle" data-translate="upcoming_vaccines">Upcoming Vaccines</h3>
+                    <div class="vaccine-timeline" id="vaccineTimeline">
+                        <!-- Timeline will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-translate="login">Login</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email" data-translate="email">Email</label>
+                    <input type="email" id="email" name="email" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="password" data-translate="password">Password</label>
+                    <input type="password" id="password" name="password" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <span class="checkmark"></span>
+                        <span data-translate="remember_me">Remember me</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" data-translate="sign_in">Sign In</button>
+                <div class="form-footer">
+                    <a href="#" class="link" data-translate="forgot_password">Forgot Password?</a>
+                    <span>|</span>
+                    <a href="#" class="link" id="showRegisterModal" data-translate="create_account">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-translate="register">Register</h3>
+                <button class="modal-close" id="closeRegisterModal">&times;</button>
+            </div>
+            <form class="register-form" id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="regFirstName" data-translate="first_name">First Name</label>
+                        <input type="text" id="regFirstName" name="firstName" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="regLastName" data-translate="last_name">Last Name</label>
+                        <input type="text" id="regLastName" name="lastName" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail" data-translate="email">Email</label>
+                    <input type="email" id="regEmail" name="email" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="regPhoneNumber" data-translate="phone_number">Phone Number</label>
+                    <input type="tel" id="regPhoneNumber" name="phoneNumber" class="form-input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="regPassword" data-translate="password">Password</label>
+                        <input type="password" id="regPassword" name="password" required minlength="8" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="regConfirmPassword" data-translate="confirm_password">Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" name="confirmPassword" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regRole" data-translate="role">Role</label>
+                    <select id="regRole" name="role" class="form-input">
+                        <option value="PARENT" data-translate="parent">Parent</option>
+                        <option value="DOCTOR" data-translate="doctor">Doctor</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" data-translate="create_account">Create Account</button>
+                <div class="form-footer">
+                    <span data-translate="already_have_account">Already have an account?</span>
+                    <a href="#" class="link" id="showLoginFromRegister" data-translate="sign_in">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Child Modal -->
+    <div class="modal" id="addChildModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-translate="add_child">Add Child</h3>
+                <button class="modal-close" id="closeAddChildModal">&times;</button>
+            </div>
+            <form class="child-form" id="childForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="childFirstName" data-translate="first_name">First Name</label>
+                        <input type="text" id="childFirstName" name="firstName" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="childLastName" data-translate="last_name">Last Name</label>
+                        <input type="text" id="childLastName" name="lastName" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="childDOB" data-translate="date_of_birth">Date of Birth</label>
+                        <input type="date" id="childDOB" name="dateOfBirth" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="childGender" data-translate="gender">Gender</label>
+                        <select id="childGender" name="gender" required class="form-input">
+                            <option value="" data-translate="select_gender">Select Gender</option>
+                            <option value="MALE" data-translate="male">Male</option>
+                            <option value="FEMALE" data-translate="female">Female</option>
+                            <option value="OTHER" data-translate="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="childBloodGroup" data-translate="blood_group">Blood Group</label>
+                    <select id="childBloodGroup" name="bloodGroup" required class="form-input">
+                        <option value="" data-translate="select_blood_group">Select Blood Group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="childPhoto" data-translate="photo">Photo (Optional)</label>
+                    <input type="file" id="childPhoto" name="photo" accept="image/*" class="form-input">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" data-translate="add_child">Add Child</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="/placeholder.svg?height=32&width=32" alt="VaxTracker Logo" class="footer-logo">
+                        <span class="footer-brand-name">VaxTracker</span>
+                    </div>
+                    <p class="footer-description" data-translate="footer_description">Keeping your child's health on track with reliable vaccination reminders and comprehensive health management.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title" data-translate="quick_links">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="about_us">About Us</a></li>
+                        <li><a href="#" data-translate="contact">Contact</a></li>
+                        <li><a href="#" data-translate="privacy_policy">Privacy Policy</a></li>
+                        <li><a href="#" data-translate="terms_service">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title" data-translate="support">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="help_center">Help Center</a></li>
+                        <li><a href="#" data-translate="faq">FAQ</a></li>
+                        <li><a href="#" data-translate="vaccine_guide">Vaccine Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VaxTracker. <span data-translate="all_rights_reserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
